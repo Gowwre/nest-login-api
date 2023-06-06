@@ -14,6 +14,7 @@ import { UserModule } from 'src/user/user.module';
 @Module({
   imports: [UserModule, PassportModule],
   providers: [AuthService, LocalStrategy],
+  controllers: [AuthController],
 })
 export class AuthModule {
 }
