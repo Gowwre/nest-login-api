@@ -3,7 +3,6 @@ https://docs.nestjs.com/controllers#controllers
 */
 
 import { Controller, UseGuards, Post, Request, Get } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
