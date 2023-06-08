@@ -23,7 +23,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   signIn(@Body() signInDto: LoginUserDto) {
-    const loggedInUser = this.authService.signIn(
+    const loggedInUser = this.authService.signInThatReturnsAUserObject(
       signInDto.email,
       signInDto.password,
     );

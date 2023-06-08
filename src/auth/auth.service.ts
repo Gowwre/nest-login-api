@@ -25,13 +25,32 @@ export class AuthService {
       console.log(error);
     }
   }
+
+  async signInThatReturnsAUserObject(
+    email: string,
+    passwordInput: string,
+  ): Promise<any> {
+    try {
+      const user = await this.userService.findOne(email);
+      if (user?.password !== passwordInput) {
+        throw new UnauthorizedException();
+      }
+      return user;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
   async signIn(email: string, passwordInput: string): Promise<any> {
     try {
       const user = await this.userService.findOne(email);
       if (user?.password !== passwordInput) {
         throw new UnauthorizedException();
       }
-      const payload = { sub: user.userId, email: user.email };
+      const payload = {
+        sub: user.userId,
+        email: user.email,
+        name: user.username,
+      };
       return {
         access_token: await this.jwtService.signAsync(payload),
       };
