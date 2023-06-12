@@ -6,7 +6,10 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { User } from './user/user.entity';
-
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
+import { AppResolver } from './app.resolver';
 @Module({
   imports: [
     AuthModule,
@@ -21,9 +24,14 @@ import { User } from './user/user.entity';
       entities: [User],
       synchronize: true,
     }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      sortSchema: true,
+    }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppResolver ],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}

@@ -8,6 +8,7 @@ https://docs.nestjs.com/modules
 
 import { Module } from '@nestjs/common';
 import { UserModule } from 'src/user/user.module';
+import { AuthResolver } from './auth.resolver';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { UserModule } from 'src/user/user.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService,AuthResolver],
 })
 export class AuthModule {
   constructor() {

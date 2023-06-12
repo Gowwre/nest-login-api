@@ -1,12 +1,15 @@
+import { Field, GraphQLISODateTime, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+@ObjectType()
 @Entity({
   name: 'user',
 })
 export class User {
+  @Field((type) => Int)
   @PrimaryGeneratedColumn()
   userId: number;
 
+  @Field()
   @Column({
     type: 'varchar',
     length: '50',
@@ -16,6 +19,7 @@ export class User {
   })
   username: string;
 
+  @Field()
   @Column({
     unique: true,
     type: 'varchar',
@@ -25,6 +29,7 @@ export class User {
   })
   email: string;
 
+  @Field()
   @Column({
     type: 'varchar',
     length: '50',
@@ -33,6 +38,7 @@ export class User {
   })
   password: string;
 
+  @Field({ nullable: true })
   @Column({
     name: 'createdAt',
     type: 'date',
