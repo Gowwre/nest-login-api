@@ -31,7 +31,7 @@ import { AppResolver } from './app.resolver';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver ],
+  providers: [AppService, AppResolver],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}

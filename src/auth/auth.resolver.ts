@@ -9,8 +9,9 @@ import { User } from 'src/user/user.entity';
 export class AuthResolver {
   constructor(private authService: AuthService) {}
 
-  @Query(()=>User)
+  @Query(() => User)
   signIn(@Args('loginCredentials') signInDto: LoginUserDto) {
+    console.log(signInDto);
     const loggedInUser = this.authService.signInThatReturnsAUserObject(
       signInDto.email,
       signInDto.password,

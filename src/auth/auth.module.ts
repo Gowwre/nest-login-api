@@ -20,7 +20,7 @@ import { AuthResolver } from './auth.resolver';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService,AuthResolver],
+  providers: [AuthService, AuthResolver],
 })
 export class AuthModule {
   constructor() {

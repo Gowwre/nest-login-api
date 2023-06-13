@@ -19,17 +19,17 @@ export class UserResolver {
     return allUsers;
   }
 
-  @Mutation(()=>User)
+  @Mutation(() => User)
   async createUser(@Args('createUserDto') createUserDto: CreateUserDto) {
-    const {confirmPassword,...userDetails} = createUserDto;
-    return await this.userService.createUser(userDetails);  
+    const { confirmPassword, ...userDetails } = createUserDto;
+    return await this.userService.createUser(userDetails);
   }
 
-  @Mutation(()=>String)
+  @Mutation(() => String)
   async deleteUser(@Args('id') id: number) {
-    const result= await this.userService.delete(id);
-    if(result.affected){
-      return "Delete Success";
+    const result = await this.userService.delete(id);
+    if (result.affected) {
+      return 'Delete Success';
     }
   }
 }
